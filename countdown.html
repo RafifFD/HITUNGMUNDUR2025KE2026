@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Mundur 2025 Ke 2026</title>
+    <style>
+        /* Global Style */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c2c2c;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #444;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: #666;
+        }
+
+        /* Countdown Section */
+        #countdown-container {
+            text-align: center;
+            padding-top: 100px; /* Menambahkan ruang di bawah header */
+        }
+
+        #countdown-container h1 {
+            font-size: 2.5rem;
+        }
+
+        #countdown {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        #current-date {
+            font-size: 1.25rem;
+            margin-top: 10px;
+        }
+
+        /* Overlay (Blok Transparan) */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh; /* Menutupi seluruh halaman */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            z-index: 10;
+            pointer-events: none; /* Agar overlay tidak mengganggu interaksi dengan elemen lain */
+            text-align: center; /* Memastikan teks berada di tengah */
+        }
+
+        /* Notification */
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6b6b;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Countdown 2025 - 2026</h1>
+        <nav>
+            <a href="#" data-section="home" class="active">Beranda</a>
+            <a href="https://saweria.co/FDRsusilo" target="_blank" style="background-color: #28a745; color: #fff;">Donasi</a>
+        </nav>
+    </header>
+
+    <!-- Countdown Section -->
+    <section id="home" class="active">
+        <div id="countdown-container">
+            <h1>Hitung Mundur 2025 ke 2026</h1>
+            <div id="countdown">Memuat...</div>
+            <div id="current-date"></div> <!-- Tanggal saat ini -->
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div id="notification"></div>
+
+    <!-- Overlay -->
+    <div id="overlay">Akan dimulai pada tanggal 1 Januari 2025</div> <!-- Overlay -->
+
+<script>
+    // Tanggal countdown 1 Januari 2025
+    const countdownDate = new Date("Jan 1, 2025 00:00:00").getTime();
+    const countdownElement = document.getElementById("countdown");
+    const overlayElement = document.getElementById("overlay");
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        // Jika tanggal sudah 1 Januari 2025
+        if (distance <= 0) {
+            countdownElement.innerHTML = "Event Dimulai!";
+            overlayElement.style.display = "none"; // Menghilangkan overlay
+            // Countdown untuk 1 Januari 2026
+            const countdownTo2026 = new Date("Jan 1, 2026 00:00:00").getTime();
+            const newDistance = countdownTo2026 - now;
+            if (newDistance <= 0) {
+                countdownElement.innerHTML = "Event selesai!";
+            } else {
+                const days = Math.floor(newDistance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((newDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((newDistance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((newDistance % (1000 * 60)) / 1000);
+                countdownElement.innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+            }
+        } else {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            countdownElement.innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+        }
+    }
+
+    setInterval(updateCountdown, 1000); // Update countdown setiap detik
+
+    // Menampilkan tanggal yang sudah diformat
+    const currentDateElement = document.getElementById("current-date");
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString("id-ID", {
+        year: 'numeric', month: 'long', day: 'numeric'
+    });
+    currentDateElement.textContent = `Tanggal: ${formattedDate}`;
+</script>
+</body>
+</html>
